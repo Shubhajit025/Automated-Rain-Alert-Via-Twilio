@@ -29,6 +29,22 @@ jobs:
           TWILIO_PHONE_NUMBER: ${{ secrets.TWILIO_PHONE_NUMBER }}
           SEND_TO_PHONE_NUMBER: ${{ secrets.TO_PHONE_NUMBER }}
         run: |
+          if [ -z "$LATITUDE" ]; then
+            echo "LATITUDE secret is not set!"
+            echo "Go to Settings > Secrets > Actions and add it."
+            exit 1
+          else
+            echo "LATITUDE is configured"
+          fi
+
+          if [ -z "$LONGITUDE" ]; then
+            echo "LONGITUDE secret is not set!"
+            echo "Go to Settings > Secrets > Actions and add it."
+            exit 1
+          else
+            echo "LONGITUDE is configured"
+          fi
+          
           if [ -z "$API_KEY" ]; then
             echo "API_KEY secret is not set!"
             echo "Go to Settings > Secrets > Actions and add it."
